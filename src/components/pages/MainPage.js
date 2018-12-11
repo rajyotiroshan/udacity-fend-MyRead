@@ -1,5 +1,6 @@
 import React , {Component} from 'react'
 import Shelf from '../shelve'
+import { Link } from 'react-router-dom' 
 
 class MainPage extends Component {
 
@@ -119,7 +120,7 @@ class MainPage extends Component {
               </div>
             </div>
             <div className="open-search">
-              <button onClick={() => this.setState({ showSearchPage: true })}>Add a book</button>
+              	<Link to="/search">Add Contact</Link>
             </div>
           </div>
 			)
