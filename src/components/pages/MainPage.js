@@ -29,6 +29,8 @@ class MainPage extends Component {
                 //pass books to their shelf
                 } 
                <Shelf books={this.state.books.filter((book)=> book.shelf === "currentlyReading")} name="Currently Reading"/>
+               <Shelf books={this.state.books.filter((book)=> book.shelf === "read")} name="Read"/>
+               <Shelf books={this.state.books.filter((book)=> book.shelf === "wantToRead")} name="Want To Read"/>
               </div>
             </div>
 
