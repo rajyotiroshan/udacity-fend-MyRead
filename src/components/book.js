@@ -20,7 +20,7 @@ shelfChange = (e)=>{
   this.props.onShelfChange(this.props.book,e.target.value);
 };
 	render() {
-    //console.log(this.props.fromSearch);
+    //console.log(this.props.book);
 		return (
     <li key={this.props.book.id}>
 			<div className="book">
