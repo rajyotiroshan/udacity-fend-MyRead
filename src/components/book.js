@@ -20,7 +20,11 @@ shelfChange = (e)=>{
   this.props.onShelfChange(this.props.book,e.target.value);
 };
 	render() {
-    //console.log(this.props.book);
+   
+   if(!this.props.book.shelf){//shelf is not defined.
+      this.props.book.shelf = "none";
+   }
+
 		return (
     <li key={this.props.book.id}>
 			<div className="book">
@@ -31,7 +35,7 @@ shelfChange = (e)=>{
                         }>
                 </div>
                     <div className="book-shelf-changer">
-                      <select value={this.props.book.shelf} onChange={this.shelfChange}>
+                      <select  value={this.props.book.shelf} onChange={this.shelfChange}>
                         <option value="move" disabled>Move to...</option>
                         <option value="currentlyReading">Currently Reading</option>
                         <option value="wantToRead">Want to Read</option>

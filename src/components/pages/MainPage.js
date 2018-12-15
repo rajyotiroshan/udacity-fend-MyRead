@@ -22,6 +22,7 @@ shelfChange=(book,newShelf)=>{
       this.setState({books:res}); //update state with books response.
     });
 };
+
   //get currently shelved books.
 	render() {
     //console.log(this.state.books);
