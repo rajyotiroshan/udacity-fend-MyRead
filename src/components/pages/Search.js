@@ -14,21 +14,24 @@ class SearchPage extends Component {
   }
 
 updateQuery = (query) => {
-  this.setState({searchQuery: query.trim()});
-}
+  this.setState({searchQuery: query});
+};
 
-componentDidUpdate() {
+componentDidUpdate(){//searchQuery is changed.
   //console.log(this.state.searchQuery);
   //search from the BooksAPI against updated searchQuery
  // if(!this.state.searchQuery ) return;
   BooksAPI.search(this.state.searchQuery).then((resp)=>{
-    resp=resp?resp:[];
-    this.setState({searchResults:resp});
+    //resp = !resp && resp.error?[]:resp;
+    //either resp is undefined or no book matched.
+    //make resp and empty array.
+    resp = !resp || resp.error?[]:resp;
+    console.log(resp);
+    this.setState({searchResults:resp.filter((book)=>book.imageLinks&&book.imageLinks.thumbnail)});
   }).catch((error)=>{
-    console.log("np respone error");
+    //console.log(error);
   });
 }
-
 
 
 	render() {
@@ -45,7 +48,7 @@ componentDidUpdate() {
             	<div className="search-books-results">
               		<ol className="books-grid">
                   {
-                    (this.state.searchResults && this.state.searchResults.length>0) && (
+                     (
                         this.state.searchResults.map((book)=>{
                           return <Book key={book.id} book={book} fromSearch={true}/>
                         })
