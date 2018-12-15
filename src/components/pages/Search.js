@@ -47,7 +47,7 @@ componentDidUpdate() {
                   {
                     (this.state.searchResults && this.state.searchResults.length>0) && (
                         this.state.searchResults.map((book)=>{
-                          return <Book book={book} fromSearch={true}/>
+                          return <Book key={book.id} book={book} fromSearch={true}/>
                         })
                       )
                   }

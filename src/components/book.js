@@ -1,4 +1,5 @@
 import React, {Component} from 'react'
+import * as BooksAPI from '../BooksAPI'
 class Book extends Component {
   /*
   props={
@@ -7,13 +8,19 @@ class Book extends Component {
   shelfChange(func)
   }
   */
+state = {};
 shelfChange = (e)=>{
   //console.log(book);
   //console.log(e.target.value);
+  if(this.props.fromSearch){
+    BooksAPI.update(this.props.book, e.target.value);
+    this.setState({});
+    return;
+  }
   this.props.onShelfChange(this.props.book,e.target.value);
 };
 	render() {
-    console.log(this.props.fromSearch);
+    //console.log(this.props.fromSearch);
 		return (
     <li key={this.props.book.id}>
 			<div className="book">
