@@ -14,24 +14,35 @@ class MainPage extends Component {
     });
   }
 
+shelfChange=(book,newShelf)=>{
+  //console.log(book);
+  //console.log(newShelf);
+  BooksAPI.update(book,newShelf);//update state with books response.
+  BooksAPI.getAll().then((res)=>{
+      this.setState({books:res}); //update state with books response.
+    });
+};
   //get currently shelved books.
 	render() {
+    //console.log(this.state.books);
 		return (
-			<div className="list-books">
-            
+			<div className="list-books">        
             <div className="list-books-title">
               <h1>MyReads</h1>
             </div>
             
             <div className="list-books-content">
-              <div>
+              
                 {
                 //pass books to their shelf
                 } 
-               <Shelf books={this.state.books.filter((book)=> book.shelf === "currentlyReading")} name="Currently Reading"/>
-               <Shelf books={this.state.books.filter((book)=> book.shelf === "read")} name="Read"/>
-               <Shelf books={this.state.books.filter((book)=> book.shelf === "wantToRead")} name="Want To Read"/>
-              </div>
+               { this.state.books && 
+                  (<div> <Shelf books={ this.state.books.filter((book)=> book.shelf === "currentlyReading")} name="Currently Reading" onShelfChange={this.shelfChange}/>
+                  <Shelf books={ this.state.books.filter((book)=> book.shelf === "read")} name="Read" onShelfChange={this.shelfChange}/>
+                  <Shelf books={ this.state.books.filter((book)=> book.shelf === "wantToRead")} name="Want To Read" onShelfChange={this.shelfChange}/>
+                </div> )
+                }
+             
             </div>
 
             <div className="open-search">
